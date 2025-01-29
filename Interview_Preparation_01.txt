@@ -1,0 +1,185 @@
+Go in data view and in sorted colums select columns select month no. column.
+
+sir, currently i am not recall.
+
+Capgemini is really good company but the thing is like i need to grow myself and the project i was working on is completed.
+and i am waiting for other project there are no projects with the skills sets that I am having 
+
+Can you please tell me about the project in the company going on
+
+1. How to calculate YOY Sales?
+
+YOY Sales = Divide([Total Sales]-[Previous year sales],[Previous year sales])
+
+Previous Year Sales = calculate([Total Sales], dateadd(date_dim[date], -1, year)
+
+Cumulative and Running Total = calculate([total sales], Filter(All(date_dim[date],date_dim[date]<= max(date_dim[date]
+                                                                                    
+
+2. Calculate Function:
+
+It is a filter modifier and most power full DAX Function, we can calculate previous year revenue, cumulative,
+any particular region and category sales with it, all find % wise with it.
+Calculate(expression, filter1, filter2)
+calculate([total sales], region = "India")
+
+Time Intelligence Calculations: It can be used to calculate previous year sales, year-to-date (YTD), quarter-to-date (QTD),
+or month-to-date (MTD) metrics by modifying the time context.
+Example: CALCULATE([Total Sales], SAMEPERIODLASTYEAR(Date[Date])) gives the previous year’s sales.
+
+3. DrillThrough :
+Where we can filter on different page on target destination. in visualization pane at bottom we need to pass it.
+
+4. Summarize function :
+It is a table function. it returns new table. we can do aggregations like sum, average on our categories, officers and regions.
+SUMMARIZE (Orders,Orders[Region],"Average Price", Average[Product[Price])
+It will create new table.
+
+
+5. What is Query Folding?
+
+It combines all m language statement into one single SQL statement, we have to fetch data from SQL then do transformation 
+and in applied steps click right where last 3rd option is there of view native query there we get sql statements.
+Copy paste in SQL Server you will find transform table.
+
+It combines all m language statement into one single SQL statement. Works on transformation like Group by, append, remove columns.
+Transform table in all our single statement, we mostly used on large datasets while refresh, we group, aggregate, bin it and then use.
+
+
+6. Slicer: A slicer is like a small button or dropdown on your Power BI report that lets you pick specific values to show in your visuals.
+For example, if you have sales data for different regions, you can use a slicer to view sales for just one region at a time.
+
+7. Filter: A filter works behind the scenes to control what data gets included in your visuals. For example, you can set a filter to
+show sales for the year 2023 only, and all the visuals on your report will follow that rule.
+
+Both are used to narrow down and focus on the data you want to see. Slicers are visible to the user, while filters can be hidden 
+and work in the background.
+
+8. Bookamrks:
+
+Bookmarks in Power BI are the current snapshot of our page.
+This includes visuals, filters, slicers, and drill-throughs. They allow you to quickly switch between different views of your report.
+
+Bookmarks are used to go back in time where we save the report and when other view your report
+They get back to the exact state how you save the report while creating the bookmark that is what 
+Bookmarks used for.
+
+When you are trying look up any website and you have to go out for some reason you want to make
+sure you save what you are doing so in that case you Bookmark that website so that you comeback
+and revisit that website.
+
+Switching between different report views (e.g., monthly vs. yearly data).
+
+9. Power BI Desktop : Where we create reports, fetch data, do modelling.
+
+Power BI Service: It is a cloud where we publish our reports, schedule refresh, data alerts etc.
+
+10. What is DAX?
+Dax is a formula mathematical language used to define custom calculations. with DAX we create calculated columns, measure and RLS.
+
+11. Window functions calculate an aggregate value based on a group of rows and return multiple rows for each group and 
+returns result in details.
+
+Aggregate window functions, ranking window functions and value window functions
+
+RANK()
+The RANK() function assigns a unique rank to each row within a result set. Rows with the same values receive the same rank.
+and the next rank is skipped. for example, if multiple rows have the same value and are ranked first, the next row is assigned
+a rank that is incremented by the number of tied rows.
+
+Select sno, sname, dateyear, salary, country, RANK() OVER(ORDER BY COUNTRY) AS RANKX FROM EMPLOYEES.
+
+DENSE_RANKS()
+The DENSE_RANKS() functions assigns a unique rank to each row within a result set, similar to RANK().
+It doesn't skip ranks when multiple rows have the same values. the rank is incremental by one for each tied row.
+
+Indexing in SQL
+Indexing in SQL is a database optimization technique that improves the speed of data retrieval operations on a table.
+
+
+12.What is Sub Query in SQL?
+A subquery is a query inside an another query. it is a more complex, single row query - returns one row and one column.
+and multiple row query means returns multiple rows but typically one column. used with operators like any, in, all
+commonly used operations: <>
+select salary * from employees where salary > (Select avg(salary) from employees);
+
+13. How did you handle performance optimization for large datasets?
+"I optimized performance by implementing incremental data refresh for the sales data, ensuring only the latest data was loaded.
+I also avoided overloading the visuals by summarizing data at higher levels for trends and drilled down into details only when needed."
+
+
+14. What challenges did you face during the project? How did you resolve them?
+One challenge was handling a large sales dataset that caused slow report performance. To resolve this,
+I used aggregations and filtered unnecessary columns during data import.
+I also optimized the data model by implementing a star schema, which improved performance by 40%."
+
+15. Performance Optimization
+Action:
+Implemented Aggregations to speed up queries for large datasets.
+Used DirectQuery for real-time data analysis where needed.
+Optimized visuals by limiting data points and using summarized views.
+
+16. 3rd highest salary
+
+select * from (select salary, dense_rank() over (order by salary desc) as qwe from employee) qwe where qwe = 3
+
+17. duplicate
+
+with cte as (
+select *, row_number() over (partition by id order by id) rn from temp) delete from cte where rn <>1
+
+
+Do you know that what is my knowledge level so where do you think i should increase my knowldege or if there any specific
+pointers which will help me to get good skill acquired in your company.
+
+1) Total Sales = sum(Order[Sales]
+
+2) SUMMARIZE(Orders,Orders[Region],"Average Price", Average[Product[Price])
+It will create new table.
+
+3) MTD Sales = TOTALMTD([Total Sales],Date_Dim[Date])
+It will find latest month sales from start date to last date.
+
+4) Order above 5k =
+If([Total Order])>=5000, "Green", "Red")
+In Bar Chart it will show Green Bar for sales above 5k and Red Bar for sales below 5k
+
+5) Maharashtra Sales = 
+MH Sales = Calculate([Total Sales], Location[Sate] = "Maharashtra")
+
+6) YOY = Divide([Total Sales]-[Previous Year Sales],[Previous Year Sales])
+   Pass in the matrix so that we get hierarchy
+
+Till Previous Year Sales = Calculate([total sales],dateadd(date_dim[date],-1,year)
+
+7) Cumulative and Running Total = calculate([total sales], Filter(All(date_dim[date],date_dim[date]<=
+                                                                                    max(Calendar_dim[date]
+
+8) Profit Percentage = [Total Sales]/Calculate[Total Sales],All(financials))
+
+9) Past 3 Month Sales = Calculate ([Total Sales], datesinperiod(date_dim[date],lastdate(date_dim[date],-3,month)/3
+It will calculate last 3 month sales
+
+
+All
+Returns all the rows in a table or all the values in a column, 
+ignoring any filters that might have been applied
+
+All measure = calculate([Total Order], ALL(Products))
+
+Product color Total Order All measure
+
+All Selected
+Removes context filters from columns and rows in the current query, while retaining all other 
+conetxt filters or explit filters
+
+
+All Selected = calculate([Total Order], ALLSELECTED(Products))
+
+ALL expect
+
+Removes all conetxt filters in the table except filters that have been applied to a specific column 
+
+All Excepted = calculate([Total Order], ALLEXPECT(Products,Products[ProductColor))
+
+

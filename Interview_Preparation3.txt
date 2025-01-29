@@ -1,0 +1,165 @@
+last 7 days sales = calculate(sum(sales), datesinperiod(calendar[date], Max(calendar[date]),-7.Day))
+
+YOY Sales = Divide([Total Sales]-[Previous year sales],[Previous year sales])
+
+Previous Year Sales = calculate([Total Sales], dateadd(date_dim[date], -1, year)
+
+YOY Growth = DIVIDE([Total sales] -calculate([Total Sales], sameperiodlastyear('date[date])),calculate([Total Sales], sameperiodlastyear('date[date])),
+
+if ([Total Order]>=5000, "Green","Red")
+
+if ([Total Order]>=5000, "Green","Red")
+
+select salary from (select salary, row_number() over (order by salary desc) as rank from employee) as ranked_salaries where rank = 3;
+
+Created measures to calculate:
+Total Sales:
+DAX
+Total Sales = SUM(Sales[SalesAmount])
+Total Quantity Sold:
+DAX
+ 
+Total Quantity = SUM(Sales[Quantity])
+Month-over-Month Growth:
+DAX
+MoM Growth =
+DIVIDE(
+   [Total Sales] - CALCULATE([Total Sales], DATEADD('Date'[Date], -1, MONTH)),
+   CALCULATE([Total Sales], DATEADD('Date'[Date], -1, MONTH))
+)
+Sales by Region:
+Sales by Region = SUM(Sales[SalesAmount])
+
+you can calculate Current MTD, QTD, YTD, and Previous Year MTD, QTD, YTD using DAX (Data Analysis Expressions). These calculations often use the DATESMTD, DATESQTD, DATESYTD, and SAMEPERIODLASTYEAR functions
+ 
+Current MTD =
+CALCULATE(
+   SUM(Sales[SalesAmount]), 
+   DATESMTD('Date'[Date])
+)
+ 
+Current QTD =
+CALCULATE(
+   SUM(Sales[SalesAmount]), 
+   DATESQTD('Date'[Date])
+)
+ 
+Current YTD =
+CALCULATE(
+   SUM(Sales[SalesAmount]), 
+   DATESYTD('Date'[Date])
+)
+ 
+Previous Year MTD =
+CALCULATE(
+   SUM(Sales[SalesAmount]), 
+   DATESMTD('Date'[Date]),
+   SAMEPERIODLASTYEAR('Date'[Date])
+)
+Previous Year QTD =
+CALCULATE(
+   SUM(Sales[SalesAmount]), 
+   DATESQTD('Date'[Date]),
+   SAMEPERIODLASTYEAR('Date'[Date])
+)
+Previous Year YTD =
+CALCULATE(
+   SUM(Sales[SalesAmount]), 
+   DATESYTD('Date'[Date]),
+   SAMEPERIODLASTYEAR('Date'[Date])
+)
+ 
+Cumulative Sum-Cumulative Sales =
+CALCULATE(
+   [Total Sales],
+   FILTER(
+       ALL('Date'),
+       'Date'[Date] <= MAX('Date'[Date])
+   )
+)
+Last 7 Days Average
+Last 7 Days Average =
+CALCULATE(
+   AVERAGE(Sales[SalesAmount]),
+   DATESINPERIOD(
+       'Date'[Date],
+       MAX('Date'[Date]),
+       -7,
+       DAY
+   )
+)
+Last 7 Days Sales =
+CALCULATE(
+   SUM(Sales[SalesAmount]),
+   DATESINPERIOD(
+       'Date'[Date],
+       MAX('Date'[Date]),
+       -7,
+       DAY
+   )
+)
+ 
+Here are the DAX formulas for Month-on-Month (MoM), Year-over-Year (YoY), and Quarter-over-Quarter (QoQ) sales calculations:
+1. Month-on-Month (MoM) Sales Growth
+Definition: MoM shows the percentage change in sales from the previous month to the current month.
+Formula: Previous Month Sales
+DAX
+Copy code
+Previous Month Sales =
+CALCULATE(
+   [Total Sales], 
+   PREVIOUSMONTH('Date'[Date])
+)
+Formula: MoM Sales Growth %
+DAX
+Copy code
+MoM Sales Growth % =
+DIVIDE(
+   [Total Sales] - [Previous Month Sales], 
+   [Previous Month Sales], 
+   0
+)
+Explanation:
+PREVIOUSMONTH('Date'[Date]): Fetches the sales from the previous month.
+DIVIDE: Safely calculates the percentage change, handling division by zero.
+2. Year-over-Year (YoY) Sales Growth
+Definition: YoY shows the percentage change in sales compared to the same period in the previous year.
+Formula: Previous Year Sales
+DAX
+Copy code
+Previous Year Sales =
+CALCULATE(
+   [Total Sales], 
+   SAMEPERIODLASTYEAR('Date'[Date])
+)
+Formula: YoY Sales Growth %
+DAX
+Copy code
+YoY Sales Growth % =
+DIVIDE(
+   [Total Sales] - [Previous Year Sales], 
+   [Previous Year Sales], 
+   0
+)
+Explanation:
+SAMEPERIODLASTYEAR('Date'[Date]): Fetches the sales for the same period last year.
+3. Quarter-over-Quarter (QoQ) Sales Growth
+Definition: QoQ shows the percentage change in sales compared to the previous quarter.
+Formula: Previous Quarter Sales
+DAX
+Copy code
+Previous Quarter Sales =
+CALCULATE(
+   [Total Sales], 
+   PREVIOUSQUARTER('Date'[Date])
+)
+Formula: QoQ Sales Growth %
+DAX
+Copy code
+QoQ Sales Growth % =
+DIVIDE(
+   [Total Sales] - [Previous Quarter Sales], 
+   [Previous Quarter Sales], 
+   0
+)
+ 

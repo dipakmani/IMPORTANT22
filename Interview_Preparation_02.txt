@@ -1,0 +1,106 @@
+1. Row level security:
+
+RLS stands for row level security, if we want to apply security on any perticular region
+and want to show that much only to the client then we do it. 
+There are two types static and dynamic.
+Where for dynamic rls axis management sheet is there with username and email.
+and we userprincipalname DAX. We can create in modeling ribbon in manage roles. 
+
+Userprincipalname(): shows the username of currently logged user in both power bi dekstop and power bi service.
+
+Username(): shows the desktop name in power bi desktop.
+
+To implement the rls there a following steps
+
+1. Import the dataset.
+2. From modelling tab, select manage roles.
+3. from the nabage roles window, select create.
+4. under roles, provide a name for the role.
+5. Under the tables, select the table to which you want to apply a DAX rule.
+6. In the table filter expression box, enter the dax expresions.
+7. select the checkmark above the expression box to validate the expression.
+8. select save.
+
+Static RLS:
+
+When the dataset is small and user groups are static.
+Fixed rules are applied.
+Example: Regional sales data is shown only to specific teams (e.g., North team sees North region data).
+
+Dynamic RLS:
+
+When the dataset is large and user access is variable or requires frequent updates.
+Rules change based on the logged-in user.
+Dynamic RLS: For flexible access, like automatically filtering data based on the user’s login.
+Example: A sales manager sees data for their assigned region dynamically based on their email.
+
+
+2. What are the dataflows and why do we want them?
+
+Dataflows are the live queries that run independently within the power bi service. We create them as we can:
+reuse these queries accross multiple dekstop or service reports.
+
+run ETL process on specific schedules.
+Hence can integrate, transform & enrich the data.
+
+
+
+3. What is gateway?
+
+Data gateway is a basically act like a bridge, creating a connection between data on our local machine
+and power bi service
+Types 
+
+1.Personal mode gateway : can only be used by you, can't be used with other apps or services, only supports
+schedule refresh in power bi.
+
+2. Enterprise mode gateway : Can be shared and used by multiple users. can be used by power bi, power apps, flows
+support live query and dataflow for power bi.
+
+3. Virtual network data gateway
+
+
+4. Challenges in power bi?
+
+challenges : slow perfromance when refreshing the large dataset.
+solution : 1. Data Modelling : Optimize the data model by reducing the number of columns and creating star schema instead of snowflake schema.
+           2. Aggregation : we done with pre aggregate data for faster reporting.
+           3. DAX Optimization : Replace complex measures instead simple ones or use to avoid calculated columns.
+           4. Query reduction : Disable auto date/time and reduce the no. of visuals or filter if not needed.
+
+Pro Account
+Supports Small or Medium datasets (up to 1GB per dataset).
+    Sharing reports and dashboards with other Pro users.
+    Exporting data to PowerPoint, Excel, or PDF.
+    Creating app workspaces for collaboration.
+    Allows up to 8 scheduled refreshes per day.
+    Small to medium-sized organizations needing essential BI features. 
+
+Premium Account 
+   Supports large datasets (up to 400 GB per dataset).
+   Enables Paginated Reports for pixel-perfect formatting.
+   Offers AI Insights for automated data analysis using machine learning models.
+   Provides higher processing power and dedicated capacity in the cloud.
+   Supports Unlimited Sharing: Share content with users who don’t have Pro licenses.
+   Allows up to 48 scheduled refreshes per day. 
+
+
+5. KPIS : Key performance indicators: A kpis is a measurable value that indicates how well an objective is being achieved. 
+       including revenue, profit margin or customer churn rate.
+
+KPIS : Total sales, year over year growth.
+
+Dimension : dimension provides a context analyzing the kpis. it is a
+ qualitative data such as time region, product category and customer segment.
+Dimension : Region[north america, erope], time[year, quarter]
+
+
+Good practices in power bi?
+
+Data modelling : Use star schema, avoid direct queries if possible
+Naming conventions : Use meaningful names for tables, columns and measures.
+Reduce dataset size: Remove unnesccsary columns and rows.
+Use measure instead of calc columnsfor better performance.
+Use variable in dax. to enhance readiability and performance.
+
+IF(ISBLANK([COLUMN]), "DEFAULT",[COLUMN])

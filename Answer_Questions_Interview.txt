@@ -1,0 +1,208 @@
+In Merge Queries  Used to combine columns from two or more tables based on a common key (like a SQL JOIN).
+For example, merging a Sales table with a Products table using the ProductID column.
+
+In Merge operation columns will be added to the table whereas in append operation rows will be added to the table
+
+In merge queires need not neceessary to be a same column name or same columns but there is a fact table coonects to the dimension table.
+
+Merge works on column and it's like a Join.
+
+
+Append Queries: Used to stack rows from two or more tables with identical column structures.
+
+For instance, appending January Sales and February Sales into a single table.
+
+In Append it is mandatory to have the same column names, data type of the two tables in which we are doing append queries,
+In first table having 3 records and 2nd table having 3 records. when new append table generate that time 6 records we are showing.
+
+Append works on column basis and it's like union all.
+
+2. Difference between Star Schema vs Snowflake Schema?
+
+Star Schema:
+
+Simple structure with one central fact table connected to dimension tables (e.g., Date, Product, Region).
+Easy to understand and optimized for querying.
+
+Snowflake Schema:
+
+Complex structure one central fact table connected to dimension tables and also Dimension Table 
+is connected to Dimension table. and Heirarchy is there,Dimension tables are normalized into multiple related tables 
+(e.g., Region table split into Country and State tables).
+Requires more joins and is harder to query but reduces redundancy.
+
+3. What are the data connections available in Power BI?
+
+Power BI supports various connections:
+
+File Sources: Excel, CSV, JSON, etc.
+Database Sources: SQL Server, Oracle, MySQL, etc.
+Online Services: SharePoint, Salesforce, etc.
+Others: APIs, Azure, and Big Data sources.
+
+4. What is Gateway?
+
+Data gateway is a basically act like a bridge, creating a connection between data on our local machine
+and power bi service
+Types 
+
+1. Personal mode gateway : can only be used by you, can't be used with other apps or services, only supports
+schedule refresh in power bi.
+
+2. Enterprise mode gateway : Can be shared and used by multiple users. can be used by power bi, power apps, flows
+support live query and dataflow for power bi.
+
+5. What is Sync Slicer?
+
+A Sync Slicer allows filtering across multiple report pages.
+Implementation: Go to the slicer pane → Enable "Sync Slicer" → Apply filters across pages.
+
+6. What is row level security in Power BI?
+
+1. Row level security:
+
+RLS stands for row level security, if we want to apply security on any perticular region
+and want to show that much only to the client then we do it. 
+There are two types static and dynamic.
+Where for dynamic rls axis management sheet is there with username and email.
+and we userprincipalname DAX. We can create in modeling ribbon in manage roles. 
+
+Userprincipalname(): shows the username of currently logged user in both power bi dekstop and power bi service.
+
+Username(): shows the desktop name in power bi desktop.
+
+To implement the rls there a following steps
+
+1. Import the dataset.
+2. From modelling tab, select manage roles.
+3. from the nabage roles window, select create.
+4. under roles, provide a name for the role.
+5. Under the tables, select the table to which you want to apply a DAX rule.
+6. In the table filter expression box, enter the dax expresions.
+7. select the checkmark above the expression box to validate the expression.
+8. select save.
+
+Static RLS:
+
+When the dataset is small and user groups are static.
+Fixed rules are applied.
+Example: Regional sales data is shown only to specific teams (e.g., North team sees North region data).
+
+Dynamic RLS:
+
+When the dataset is large and user access is variable or requires frequent updates.
+Rules change based on the logged-in user.
+Dynamic RLS: For flexible access, like automatically filtering data based on the user’s login.
+Example: A sales manager sees data for their assigned region dynamically based on their email.
+
+7. What is Drill Through in Power BI?
+
+Allows navigation from one report page to another with detailed information.
+Add a Drill Through page, drag a field to the Drill Through pane, and filter data accordingly.
+
+Example:
+A summary page showing sales by region.
+A Drill Through page showing detailed sales data for a selected region.
+Implementation: Add a Drill Through filter on the target page (e.g., Region) and users can right-click to "Drill Through" from the summary page.
+
+8. What are the charts used in real-time projects?
+
+Bar Chart: Compare values like sales across regions.
+Line Chart: Analyze trends over time (e.g., monthly revenue).
+Pie/Donut Chart: Show proportions (e.g., sales share by product).
+Decomposition Tree: Break down data hierarchically (e.g., Total Sales → Region → Product → Salesperson).
+
+10. What are DAX Functions and Time Intelligence?
+DAX Functions:
+Aggregations: SUM, AVERAGE.
+Logical: IF, SWITCH.
+Text: CONCATENATE.
+Time Intelligence: Functions like YTD, QTD, SAMEPERIODLASTYEAR for time-based analysis.
+
+11. Explain the Decomposition Tree Chart.
+
+Decomposition Tree: Visualize data hierarchies and explore root causes of metrics.
+Example: Analyze low sales.
+Break Total Sales → Region → Product → Salesperson to identify the cause of underperformance.
+
+12. How to calculate month-wise sales?
+MonthWiseSales = SUMMARIZE(SalesTable, FORMAT(SalesTable[Date], "MMMM"), "TotalSales", SUM(SalesTable[Sales]))
+
+This groups data by month and calculates total sales.
+
+13. How to handle many-to-many relationships?
+
+Create a bridge table with unique values.
+For example, if there are two fact tables with CustomerID, create a Customer Dimension Table and relate it to both fact tables.
+
+14. What are the joins available in SQL?
+A JOIN clause is used to combine rows from two or more tables, based on a related column between them. 
+INNER JOIN: Returns only matching rows between tables.
+LEFT JOIN: All rows from the left table, with matching rows from the right.
+RIGHT JOIN: All rows from the right table, with matching rows from the left.
+FULL OUTER JOIN: All rows from both tables, with NULLs for non-matching rows.
+
+15. Display the color only for the highest sales in a visual.
+HighlightColor = IF(Sales = MAX(Sales), "HighlightColor", "DefaultColor")
+
+16. Calculate DISTINCTCOUNT of CustomerID from unrelated tables.
+
+Use the UNION function to combine the CustomerID columns:
+
+DistinctCount = DISTINCTCOUNT(UNION(VALUES(Table1[CustomerID]), VALUES(Table2[CustomerID])))
+This combines CustomerIDs from both tables and removes duplicates.
+
+17.Summarize function :
+It is a table function. it returns new table. we can do aggregations like sum, average on our categories, officers and regions.
+SUMMARIZE (Orders,Orders[Region],"Average Price", Average[Product[Price])
+It will create new table.
+
+18. What are DDL and DML commands in SQL?
+DDL (Data Definition Language): Defines or modifies the database structure.
+Examples: CREATE, ALTER, DROP, TRUNCATE.
+DML (Data Manipulation Language): Manipulates data within tables.
+Examples: INSERT, UPDATE, DELETE, SELECT.
+
+19. Extract the Last Name (e.g., "Smith") from "Benjamin-Smith" using DAX.
+Use the RIGHT and SEARCH functions:
+LastName = RIGHT([Name], LEN([Name]) - SEARCH("-", [Name]))
+
+20. How to optimize a report with huge data?
+Use Aggregations to reduce data size.
+Limit data using filters (e.g., only the last 2 years).
+Use star schema for modeling.
+Minimize calculated columns; use measures instead.
+Optimize visuals and remove unused fields.
+
+21. How do you know if your client has viewed your report?
+In Power BI Service, check the Usage Metrics for the report to see the number of views, unique users, and interaction details.
+
+22. Different roles in Power BI Service:
+Admin: Full control over the workspace.
+Member: Can edit content and manage the workspace.
+Contributor: Can create and modify content but can’t manage permissions.
+Viewer: Read-only access to reports and dashboards.
+
+23.How did you validate your report?
+Verify the data sources and transformations for correctness.
+Compare report outputs with raw data or existing reports.
+Perform QA checks for calculations, filters, and visuals.
+Validate with stakeholders to ensure business requirements are met.
+
+1. Use measure instead Calculated Column.
+2. Import only those tables which are needed from database.
+3. Use Import Mode rather than Direct Query Mode.
+4. Use of Reference rather than Duplicate.
+5. Use Light Custom Visuals, also check with Performance Analyzer Option.
+6. Use of Switch DAX, Field Parameters to consume less space.
+7. Less use of slicers is must.
+8. Disable Date Hierarchy Keys.
+9. Will not connect 2 Fact Table and avoid many to many relationships.
+10. Will avoid Quick Measures.
+11. Try to avoid use of "Text" data type of columns.
+12. Disable auto date & time.
+13. Use of Bookmarks and Buttons.
+14. Use of Star schema as 1st preference, 2nd preference as Snowflake schema. Don't use Galaxy schema. 
+15. Avoid too many visuals per page.
+16. Enable incremental refresh for large datasets.
+17. Use DAX variables to simplify calculations and improve performance.

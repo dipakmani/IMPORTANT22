@@ -1,0 +1,126 @@
+Q1. PERFORMACE WISE BETTER (How to improve the performance of Poweer BI)
+
+USE measure instead of calculated column.
+import only those tables which are needed from database.
+use import Mode rather than direct query.'
+use reference rather than duplicate.
+Use appropriate data types, ex-use Date instead and DateTime format.
+and use light custom visuals and also performance analyzer option.
+Limit the number of visuals in dashboards and visuals.
+use of data profiling and remove empty rows.
+less use of slcier is must
+disable data herirachy keys.
+will not connect 2 fact tables. and avoid many to many relationships.
+will avoid quick measures.
+try to avoid text data types of columns.
+disable auto data & time.
+use of bookmarks and buttons.
+use of star schema as 1st preference , 2nd snowflake and avaoid galaxy.
+
+Q2. Bugs:
+
+Check whether new incremental data was loaded properly ot not
+check modelling properly and its all relationships. try to build it again.
+check all the measures properly and dax in it.
+check any filter is passed on page(slcier)
+also check power query transformations whether they are applied properly. especially checks all the data types of columns.
+build the visuals again which has issues.
+also check settings in options and settings.
+check companies server and is vdi working properly.
+sometime data came from clients its wrong or having errors.
+
+Q 3. Roles in power BI Service?
+
+Power BI Admin : Persons own/manage the workspace with full control over other members in that workspace.
+
+Member - Basically developer of that report has the member access having capabilities of doing modifications, sharing the reports through apps,
+managing gateways and many more. Members can give contributor and viewer access whike adding new people in the workspace.
+
+Contributor - Contributes by doing modifications if any and publishing it to the service. Can give only viewer access 
+to the new people added to the workspace.
+
+Viewer - The Business/end users are given viewers access who can only view the report to them.
+
+Q 4. What is a Data Gateway and explain it's types?
+
+Data Gateways basically act like a bridge, creating a connection between data on our local machine or server (not on the cloud)
+and the power bi service.
+
+Personal Mode Gateway : Can only be used by you, can't be used with other apps or services, only supports scehdule refresh in Power BI.
+
+Enterprise Mode Gateway : Can be shared and used by multiple users, can be used by Power BI, Power Apps, Flow etc. supports Schedule 
+refresh and live query(DataFlow) for power bi.
+
+Q 5. What are the dataflows in Power BI ?
+
+Dataflows are the live queries that run independently within Power BI Service. We create them as we can.
+
+Reuse these queries across Multiple Desktop or Service reports.
+
+Run ETL processes on specific schedules
+
+Hence can integrate, transform and enrish our data.
+
+
+
+
+
+
+
+
+
+ALL
+What it does: It removes all filters from the specified column(s) or table.
+When to use: When you want to ignore any filters applied to your data and consider everything.
+Total Sales (Ignore All Filters) = 
+CALCULATE(
+    SUM(Sales[Amount]),
+    ALL(Sales[Region])
+)
+What this does: Calculates the total sales amount for all regions, ignoring any filter applied to the Region column.
+
+Example:
+Imagine you have a table of sales data, and you've filtered the region to "East." If you use ALL(Sales[Region]), it will ignore the "East" filter
+and calculate for all regions.
+
+2. ALLSELECTED
+
+What it does: It keeps the filters applied by the user (like slicers or visuals),
+ but ignores filters applied by calculations inside your measure.
+When to use: When you want to respect the user’s selections but ignore intermediate filters added by your calculations.
+Example:
+If a user selects "East" in a slicer and your measure uses ALLSELECTED(Sales), it will only calculate for "East,"
+respecting the user's slicer choice. But if you add an internal filter in the measure, it will ignore that and stick to the slicer selection.
+
+Total Sales (Respect User Slicers) = 
+CALCULATE(
+    SUM(Sales[Amount]),
+    ALLSELECTED(Sales)
+)
+
+What this does: Calculates the total sales amount for the rows visible after applying slicers or filters set by the user on visuals.
+
+3. ALLEXCEPT
+What it does: It removes all filters except for the ones you explicitly specify.
+When to use: When you want to clear all filters but keep some specific ones intact.
+Example:
+If your data has filters for region and year, and you use ALLEXCEPT(Sales, Sales[Year]), it will remove all filters except for the year filter.
+
+Total Sales (Keep Year Filter) = 
+CALCULATE(
+    SUM(Sales[Amount]),
+    ALLEXCEPT(Sales, Sales[Year])
+)
+
+What this does: Calculates the total sales amount, ignoring all filters except those applied to the Year column.
+
+
+1. Avoid select * in queries.
+2. use indexes on required columns.
+3. Avoid functions in where clause.
+4. Avoid leading wildchards in Like.
+5. use inner join for efficiency
+6. use union all insetad of union 
+7. avoid subqueries for performance.
+8. Use common table expressions.
+9. use limit for large dataswets. 
