@@ -1,0 +1,51 @@
+1. Connectivity mode
+2. Types of schema
+3. Licenses
+4. Modelling
+5. Merge vs Append
+6. Time Intellegence DAX
+7. Schedule Refresh & Incremental Refresh.
+8. SUM vs SUMX
+9. Calculated Columns vs Measure
+10. Types of filters
+11. Types of Catdinality in Power BI?
+12. How to handle large sized dataset
+13. How to improve the performance wise better?
+14. Challenges Faced while doing project?
+15. Types of DAX and give me a explaination about DAX Functions
+16. What is Row level security in Power BI?
+17. Difference between Drill Down and Drill Through?
+18. Difference between Slicer & Filter?
+19. What is Bookmarks? tell me the usecase?
+20. What is Gateway?
+21. Which types of visuals did you used in your project?
+22. Types of roles in Power BI?
+23. How to create app in Power BI?
+24. What is your roles and resposnibilities?
+25. What is Calculate and summarize function Power BI?
+26. What is Power Query? what is M language?
+27. Components of Power BI? Explain each
+28. What are the different types of Views in Power BI?
+29. How to handle many to many relationships?
+30. Difference between Reports and Dashboards?
+31. List some edit options in Power BI?  Filter, Highlight, None
+32. Explain about Bidirectional Cross-Filtering in Power BI?
+33. Describe the building blocks of Power BI?
+34. What is Data Profilling in Power BI?
+35. Difference between Power BI, Power Query, Power Pivot?
+36. Difference between Power BI, Tableau, Excel?
+37. How to create and manage relationships in Power BI?
+38. What is the group by in Power BI?
+
+
+SQL
+
+1. Where you used SQL in project?
+2. What is DDL, DML, DCL commands?
+3. How to find Nth Highest Salary, 2nd highest salary, 3rd highest salary?
+4. How to find Duplicate using SQL and delete the duplicate?
+5. What types of joins SQL?
+6. Difference between Where and Having Clause?
+
+
+SELECT MAX(salary) from employee where salary < 

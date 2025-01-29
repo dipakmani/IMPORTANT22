@@ -1,0 +1,61 @@
+What is Power BI?
+
+Power BI is a data analytcis tool which is provided by microsoft with the help of which we analyze the data and create different 
+interactive and attractive visualizations charts and reports for the client or end user.
+
+Do you know about SSRS?
+
+Basically SSRS means sql server reporting services, ssrs is really nothing more than a website 
+that hosts web based report.so if you want to show a basic tablular report or graph report in a web browser then 
+ssrs is best choice for us and power bi & tableau are alternative of SSRS
+
+What is Join?
+
+Join is only used to combine two or more table based on a specific common field between them or we can say its a cartesian product 
+between two or more tables.so i can say when we are selecting a data from multiple tables with the relationship we use the join.
+
+What are the different types of join?
+So basically in power bi there is a six different types of joins and those are 
+left join, right join, inner join, full outer join, left outer join, right outer join.
+
+do you heard about self join?
+self join is a join that can be used to join a table with itself
+
+What is T SQL?
+
+SQL is a programming extension from microsoft that adds several features to the structured query langauage like transaction control,
+exception handling and error handling, row processing and decalre variables and all
+
+What is Trigger?
+
+Trigger is a special type of stored procedure that automatically runs when event occured in the database server
+
+What is content pack?
+
+is a package which contain dashboard,report and relevent database or may be the data source
+
+Types of M Functions In Power BI?
+I have used ifferent types of m functions like list.content, list.distinct, list.combine, list.sort, list.random
+
+What is a slicer ?
+
+sclier is a kind of filter with the help of which user can have interaction with reports and dashbaords
+
+kEY PERFORMANCE INDICATOR OR KEY PROCESSING UNIT OR TILES
+
+Within how many days i will get the result.
+
+What is Fact and Dimension Table.
+
+Fact table contains data about event and holding aggregated numeric data that you want to analyze and in case of dimension it keeps 
+the metadata that describes the fact table that can be used to filter the fact table instead of that we can also say in fact table
+there is a less atttribute but more records than the dimension table and in dimension table there is more attribute bit less records comapred 
+to fact table or we can say number of fact table is less than the dimesnion table in a schema where as the number of dimesnion schema is more than 
+the fact table in a schema
+
+Dynamic filtering
+
+selected year = Concatenate("Sales for year ", SELECTEDVALUE('calender'[year])
+
+
+
